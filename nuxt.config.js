@@ -1,22 +1,6 @@
 module.exports = {
-  /*
-   ** Global CSS
-   */
-  css: [
-    'element-ui/lib/theme-chalk/index.css'
-  ],
-
-  /*
-   ** Add element-ui in our app, see plugins/element-ui.js file
-   */
-  plugins: [
-    '@/plugins/element-ui'
-  ],
-  /*
-   ** Headers of the page
-   */
   head: {
-    title: 'xkc',
+    title: 'Xebia Knowledge Center',
     meta: [{
         charset: 'utf-8'
       },
@@ -33,7 +17,7 @@ module.exports = {
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: '/icon.ico'
     }]
   },
   /*
@@ -42,6 +26,18 @@ module.exports = {
   loading: {
     color: '#3B8070'
   },
+  /*
+   ** Global CSS
+   */
+  css: [
+    "element-ui/lib/theme-chalk/reset.css",
+    "element-ui/lib/theme-chalk/index.css",
+    "normalize.css"
+  ],
+  plugins: ["@/plugins/element-ui"],
+  /*
+   ** Headers of the page
+   */
   /*
    ** Build configuration
    */
@@ -58,7 +54,10 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
         })
       }
     }
