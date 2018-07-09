@@ -1,6 +1,6 @@
 module.exports = {
   head: {
-    title: 'xkc',
+    title: 'Xebia Knowledge Center',
     meta: [{
         charset: 'utf-8'
       },
@@ -17,7 +17,7 @@ module.exports = {
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: '/icon.ico'
     }]
   },
   /*
@@ -32,6 +32,7 @@ module.exports = {
   css: [
     "element-ui/lib/theme-chalk/reset.css",
     "element-ui/lib/theme-chalk/index.css",
+    "normalize.css"
   ],
   plugins: ["@/plugins/element-ui"],
   /*
