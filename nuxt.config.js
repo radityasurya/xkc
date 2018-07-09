@@ -1,20 +1,4 @@
 module.exports = {
-  /*
-   ** Global CSS
-   */
-  css: [
-    'element-ui/lib/theme-chalk/index.css'
-  ],
-
-  /*
-   ** Add element-ui in our app, see plugins/element-ui.js file
-   */
-  plugins: [
-    '@/plugins/element-ui'
-  ],
-  /*
-   ** Headers of the page
-   */
   head: {
     title: 'xkc',
     meta: [{
@@ -42,6 +26,17 @@ module.exports = {
   loading: {
     color: '#3B8070'
   },
+  /*
+   ** Global CSS
+   */
+  css: [
+    "element-ui/lib/theme-chalk/reset.css",
+    "element-ui/lib/theme-chalk/index.css",
+  ],
+  plugins: ["@/plugins/element-ui"],
+  /*
+   ** Headers of the page
+   */
   /*
    ** Build configuration
    */
