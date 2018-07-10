@@ -9,9 +9,9 @@
       </div>
       <nav class="navigation">
         <ul>
-          <li><a href="#">Popular</a></li>
-          <li><a href="#">New</a></li>
-          <li><a href="#">About</a></li>
+          <li v-for="(menu, index) in menus" :key="index">
+            <a href="#">{{menu}}</a>
+          </li>
           <li>
             <a href="#">
               <span class="icon">
@@ -28,7 +28,15 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters({
+      menus: "menus/get"
+    })
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -75,7 +83,7 @@ export default {};
 
   .search {
     &__container {
-      width: 300px;
+      width: 350px;
     }
   }
 
@@ -120,10 +128,6 @@ export default {};
         }
       }
     }
-  }
-
-  nav {
-    display: block;
   }
 }
 </style>
