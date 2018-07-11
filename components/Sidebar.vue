@@ -35,11 +35,11 @@ a {
   cursor: pointer;
   transition: color 300ms ease;
 
-  &:active {
-    border-radius: 0;
-    background-color: #e2e7f4;
-    color: #4e86ff;
-  }
+  // &:active {
+  //   border-radius: 0;
+  //   background-color: #e2e7f4;
+  //   color: #4e86ff;
+  // }
 }
 
 .sidebar {
