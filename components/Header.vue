@@ -1,6 +1,6 @@
 <template>
-  <header class="header">
-    <div class="header__container">
+  <header class="header" :class="{'header--sticky': scrollPosition > 66}">
+    <div class="header__container header__container--slim">
       <a href="/" class="logo">
         <span class="logo__img">Xebia Knowledge Center</span>
       </a>
@@ -31,6 +31,20 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data: function() {
+    return {
+      scrollPosition: null
+    };
+  },
+  methods: {
+    updateScroll() {
+      console.log(this.scrollPosition);
+      this.scrollPosition = window.scrollY;
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.updateScroll);
+  },
   computed: {
     ...mapGetters({
       menus: "menus/get"
@@ -44,24 +58,36 @@ export default {
   background: #fff;
   border-bottom: 1px solid #e8e8e8;
   height: 66px;
-  position: relative;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 3;
+
+  &--sticky {
+    -moz-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+  }
 
   &__container {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 13px;
+    padding-top: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    padding-bottom: 13px;
-    padding-top: 13px;
-    padding-left: 15px;
-    padding-right: 15px;
-    max-width: 1100px;
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-    min-width: 320px;
+
+    &--slim {
+      max-width: 1100px;
+    }
   }
 
   .logo {
@@ -78,6 +104,9 @@ export default {
       text-indent: 100%;
       white-space: nowrap;
       overflow: hidden;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 
