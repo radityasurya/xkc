@@ -1,18 +1,17 @@
 <template>
     <div class="app">
       <app-header></app-header>
-      <el-container>
-        <el-aside>
-          <ul>
-            <h3>Topics</h3>
-            <li v-for="(topic, index) in topics" :key="index">
-              <a href="#">{{topic}}</a>
-            </li>
-          </ul>
-        </el-aside>
-        <main class="main">
-          <nuxt/>
-        </main>
+      <el-container class="container container--slim">
+        <el-row :gutter="20">
+          <el-col :md="6">
+            <sidebar></sidebar>
+          </el-col>
+          <el-col :md="18">
+            <main class="main">
+              <nuxt/>
+            </main>
+          </el-col>
+        </el-row>
       </el-container>
     </div>
 </template>
@@ -20,16 +19,12 @@
 
 <script>
 import header from "~/components/Header";
-import { mapGetters } from "vuex";
+import sidebar from "~/components/Sidebar";
 
 export default {
   components: {
-    "app-header": header
-  },
-  computed: {
-    ...mapGetters({
-      topics: "topics/get"
-    })
+    "app-header": header,
+    sidebar: sidebar
   }
 };
 </script>
@@ -44,38 +39,30 @@ body {
   background: #f9f9f9;
 }
 
-.el-container {
-  max-width: 1100px;
-  padding-left: 15px;
-  padding-right: 15px;
+.container {
+  padding-top: 40px;
+  width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 66px;
   margin-left: auto;
   margin-right: auto;
-  min-width: 320px;
-  margin-top: 30px !important;
-}
 
-.el-aside {
-  width: 100px;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  height: 200px;
+  .el-row {
+    width: 100%;
+  }
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 0 0 10px 0;
-    }
+  &--slim {
+    max-width: 1100px;
   }
 }
 
 .main {
   background-color: #e9eef3;
   color: #333;
-  width: 900px;
-  height: 100px;
+  height: 600px;
 }
 </style>
