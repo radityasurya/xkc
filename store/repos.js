@@ -1,5 +1,4 @@
-import axios from 'axios'
-import githubService from "~/services/GithubService";
+import trendingService from "~/services/TrendingService";
 
 export const state = () => ({
   repos: [],
@@ -12,21 +11,22 @@ export const getters = {
 }
 
 export const mutations = {
-  SET_REPOS_LIST(state, payload) {
-    state.repos = payload
+  SET_REPOS_LIST(state, {
+    list
+  }) {
+    state.repos = list
   },
 }
 export const actions = {
-  getRepos({
+  loadRepos({
     commit
-  }, category) {
-    console.log('calling action getRepos for', category)
-    githubService.getTopics(category).then(
+  }, topic) {
+    console.log('calling action loadRepos')
+    trendingService.loadRepos(topic).then(
       response => {
-        console.log(response.data)
-        commit('SET_REPOS_LIST',
-          response.data.items
-        )
+        commit('SET_REPOS_LIST', {
+          list: response.data
+        })
       },
       err => {
         console.log(err);

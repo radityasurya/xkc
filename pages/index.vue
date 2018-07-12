@@ -21,8 +21,8 @@ export default {
       selected: "topics/getSelectedTopic"
     })
   },
-  mounted() {
-    this.$store.dispatch("repos/getRepos", this.selected);
+  created() {
+    this.$store.dispatch("repos/loadRepos", this.selected);
   }
 };
 </script>

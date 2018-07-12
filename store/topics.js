@@ -1,25 +1,49 @@
+import trendingService from "~/services/TrendingService";
+
 export const state = () => ({
-  topics: [
-    'Languages',
-    'Tools',
-    'Platforms',
-    'Frameworks'
+  list: [{
+      name: 'All'
+    },
+    {
+      name: 'HTML'
+    },
+    {
+      name: 'C#'
+    },
+    {
+      name: 'Java'
+    },
+    {
+      name: 'JavaScript'
+    },
+    {
+      name: 'PHP'
+    },
+    {
+      name: 'Python'
+    },
+    {
+      name: 'Ruby'
+    },
   ],
-  selectedTopic: 'Languages'
+  selected: 'All'
 })
 
 export const getters = {
   get: (state) => {
-    return state.topics
+    return state.list
   },
   getSelectedTopic: (state) => {
-    return state.selectedTopic
+    return state.selected
   }
 }
 
 export const mutations = {
-  SET_SELECTED_TOPICS(state, payload) {
-    state.selectedTopic = payload
+  SET_TOPICS_LIST(state, payload) {
+    state.list = payload
+  },
+  SET_SELECTED_TOPIC(state, payload) {
+    state.selected = payload
   }
 }
 

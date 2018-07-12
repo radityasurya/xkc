@@ -6,9 +6,9 @@
           Topics
         </h3>
          <ul class="sidebar-list">
-          <li class="sidebar-list__item" v-for="(category, index) in categories" :key="index" :class="{active:category == selected}">
+          <li class="sidebar-list__item" v-for="(category, index) in categories" :key="index" :class="{active:category.name == selected}">
             <div class="sidebar-list__link">
-              <a @click="getRepos(category)" class="sidebar-list__link-title">{{category}}</a>
+              <a @click="getRepos(category.name)" class="sidebar-list__link-title">{{category.name}}</a>
             </div>
           </li>
         </ul>
@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     getRepos(category) {
-      this.$store.commit("topics/SET_SELECTED_TOPICS", category);
-      this.$store.dispatch("repos/getRepos", category);
+      this.$store.commit("topics/SET_SELECTED_TOPIC", category);
+      this.$store.dispatch("repos/loadRepos", category);
     }
   }
 };
