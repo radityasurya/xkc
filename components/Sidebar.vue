@@ -6,9 +6,9 @@
           Topics
         </h3>
          <ul class="sidebar-list">
-          <li class="sidebar-list__item" v-for="(topic, index) in topics" :key="index">
+          <li class="sidebar-list__item" v-for="(category, index) in categories" :key="index" :class="{active:category == selected}">
             <div class="sidebar-list__link">
-              <a href="#" class="sidebar-list__link-title">{{topic}}</a>
+              <a @click="getRepos(category)" class="sidebar-list__link-title">{{category}}</a>
             </div>
           </li>
         </ul>
@@ -23,8 +23,15 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      topics: "topics/get"
+      categories: "topics/get",
+      selected: "topics/getSelectedTopic"
     })
+  },
+  methods: {
+    getRepos(category) {
+      this.$store.commit("topics/SET_SELECTED_TOPICS", category);
+      this.$store.dispatch("repos/getRepos", category);
+    }
   }
 };
 </script>
@@ -33,13 +40,7 @@ export default {
 a {
   text-decoration: none;
   cursor: pointer;
-  transition: color 300ms ease;
-
-  // &:active {
-  //   border-radius: 0;
-  //   background-color: #e2e7f4;
-  //   color: #4e86ff;
-  // }
+  transition: color 200ms ease;
 }
 
 .sidebar {
@@ -81,10 +82,7 @@ a {
       font-size: 16px;
       letter-spacing: 0.15px;
       line-height: 14px;
-      color: #818b98;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
+      color: #aaa;
       display: flex;
 
       &-title {
@@ -97,7 +95,7 @@ a {
         word-wrap: normal;
         font-size: 14px;
         font-weight: 600;
-        color: #818b98;
+        color: #aaa;
         letter-spacing: 0.15px;
         line-height: 20px;
         margin-bottom: 0;
@@ -116,9 +114,17 @@ a {
   }
 
   .active {
-    border-radius: 0;
     background-color: #e2e7f4;
-    color: #4e86ff;
+    .sidebar-list__link-title {
+      color: #3e4d60;
+    }
+
+    &:hover {
+      background-color: #4e86ff;
+      .sidebar-list__link-title {
+        color: #fff;
+      }
+    }
   }
 }
 </style>
