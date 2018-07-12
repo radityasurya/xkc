@@ -61,8 +61,6 @@ body {
 }
 
 .main {
-  background-color: #e9eef3;
-  color: #333;
-  height: 600px;
+  margin-top: 24px;
 }
 </style>
