@@ -1,6 +1,9 @@
 <template>
   <el-row>
     <el-col>
+      <div class="loading" v-show="isLoading">
+        <img src="~/assets/loading.gif" alt="Loading">
+      </div>
       <repo-list></repo-list>
     </el-col>
   </el-row>
@@ -18,7 +21,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      selected: "topics/getSelectedTopic"
+      selected: "topics/getSelectedTopic",
+      isLoading: "isLoading"
     })
   },
   created() {
@@ -26,3 +30,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.loading {
+  text-align: center;
+  padding-top: 50px;
+}
+</style>

@@ -22,13 +22,25 @@ export const actions = {
     commit
   }, topic) {
     console.log('calling action loadRepos')
+    commit('setLoading', true, {
+      root: true
+    })
     trendingService.loadRepos(topic).then(
       response => {
+        commit('setLoading', false, {
+          root: true
+        })
+
         commit('SET_REPOS_LIST', {
           list: response.data
         })
+
       },
       err => {
+        commit('setLoading', false, {
+          root: true
+        })
+
         console.log(err);
       }
     );

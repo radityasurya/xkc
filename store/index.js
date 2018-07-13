@@ -1,9 +1,15 @@
 export const state = () => ({
-  counter: 0
+  loading: true
 })
 
+export const getters = {
+  isLoading: (state) => {
+    return state.loading
+  }
+}
+
 export const mutations = {
-  increment(state) {
-    state.counter++
+  setLoading(state, value) {
+    state.loading = value
   }
 }

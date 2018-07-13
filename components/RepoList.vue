@@ -1,9 +1,6 @@
 <template>
   <div class="repos">
-    <div v-if="isEmpty">
-      <warning message="no results available right now"></warning>
-    </div>
-    <div v-if="!isEmpty" class="repos-list">
+    <div v-if="!isEmpty" v-show="!isLoading" class="repos-list">
       <div class="repos-list__item" v-for="(repo, index) in repos" :key="index">
         <header class="repos-list__header">
           <h4 class="title">
@@ -14,6 +11,9 @@
           </p>
         </header>
       </div>
+    </div>
+    <div v-if="isEmpty">
+      <warning message="no results available right now"></warning>
     </div>
   </div>
 </template>
@@ -30,13 +30,14 @@ export default {
   methods: {},
   computed: {
     isEmpty: function() {
-      if (this.repos && this.repos.length > 0) {
+      if (this.isLoading || (this.repos && this.repos.length > 0)) {
         return false;
       }
       return true;
     },
     ...mapGetters({
-      repos: "repos/get"
+      repos: "repos/get",
+      isLoading: "isLoading"
     })
   }
 };
