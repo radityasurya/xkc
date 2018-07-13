@@ -10,7 +10,7 @@
       <nav class="navigation">
         <ul>
           <li v-for="(menu, index) in menus" :key="index">
-            <a href="#">{{menu}}</a>
+            <a :href="menu.url">{{menu.name}}</a>
           </li>
           <li>
             <a href="#">
@@ -141,6 +141,7 @@ export default {
         font-weight: 600;
         cursor: pointer;
         text-decoration: none;
+        text-transform: capitalize;
 
         &:hover {
           color: #666;

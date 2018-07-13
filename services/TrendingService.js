@@ -3,7 +3,6 @@ import axios from 'axios'
 const Api = axios.create({
   baseURL: 'https://github-trending-api.now.sh',
   headers: {
-    'Accept': 'application/vnd.github.mercy-preview+json',
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json'
   }
@@ -12,7 +11,7 @@ const Api = axios.create({
 const timeline = 'monthly'
 
 export default {
-  loadLanguages() {
+  loadCategories() {
     console.log('getting the popular languages')
     return Api.get('/languages')
   },

@@ -1,8 +1,12 @@
 export const state = () => ({
-  list: [
-    'New',
-    'Popular',
-    'Categories',
+  list: [{
+      name: 'trending',
+      url: '/'
+    },
+    {
+      name: 'categories',
+      url: 'categories'
+    }
   ]
 })
 

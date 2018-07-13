@@ -2,16 +2,9 @@
     <div class="app">
       <app-header></app-header>
       <el-container class="container container--slim">
-        <el-row :gutter="20">
-          <el-col :md="6">
-            <sidebar></sidebar>
-          </el-col>
-          <el-col :md="18">
-            <main class="main">
-              <nuxt/>
-            </main>
-          </el-col>
-        </el-row>
+        <main class="main">
+          <nuxt/>
+        </main>
       </el-container>
     </div>
 </template>

@@ -26,6 +26,7 @@ export const state = () => ({
       name: 'Ruby'
     },
   ],
+  categoriesList: [],
   selected: 'All'
 })
 
@@ -35,6 +36,9 @@ export const getters = {
   },
   getSelectedTopic: (state) => {
     return state.selected
+  },
+  getCategories: (state) => {
+    return state.categoriesList
   }
 }
 
@@ -44,7 +48,40 @@ export const mutations = {
   },
   SET_SELECTED_TOPIC(state, payload) {
     state.selected = payload
+  },
+  SET_CATEGORIES_LIST(state, payload) {
+    state.allCategories = payload
   }
 }
 
-export const actions = {}
+export const actions = {
+  loadCategories({
+    commit
+  }) {
+    console.log('calling action loadCategories')
+    commit('setLoading', true, {
+      root: true
+    })
+    trendingService.loadCategories().then(
+      response => {
+        commit('setLoading', false, {
+          root: true
+        })
+
+        console.log(response.data)
+
+        commit('SET_CATEGORIES_LIST', {
+          list: response.data.popular
+        })
+
+      },
+      err => {
+        commit('setLoading', false, {
+          root: true
+        })
+
+        console.log(err);
+      }
+    );
+  }
+}
